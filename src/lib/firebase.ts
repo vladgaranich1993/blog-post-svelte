@@ -1,7 +1,14 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, onAuthStateChanged, signInWithPopup, GoogleAuthProvider, signOut } from 'firebase/auth';
+import {
+  getAuth,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  signOut,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
-
 const firebaseConfig = {
   apiKey: "AIzaSyA8tcGj_TyddNWw6yXDmI3bpHSGg_Mtg54",
   authDomain: "blog-svelte-app.firebaseapp.com",
@@ -16,4 +23,13 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-export { auth, db, onAuthStateChanged, signInWithPopup, GoogleAuthProvider, signOut };
+export {
+  auth,
+  db,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  signOut,
+  GoogleAuthProvider,
+  signInWithPopup,
+};
