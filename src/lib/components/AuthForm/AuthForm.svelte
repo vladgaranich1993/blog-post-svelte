@@ -3,6 +3,7 @@
     import { createEventDispatcher } from 'svelte';
     import userStore from '$lib/userStore';
     import type { User } from 'firebase/auth';
+    import { sendPasswordResetEmail } from 'firebase/auth';
     import './AuthForm.css'
 
     let email: string = '';
@@ -10,6 +11,8 @@
     let error: string | null = null;
     let isRegister: boolean = false;
     let confirmPassword: string = '';
+    let resetEmailSent: boolean = false;
+    let isResetPassword: boolean = false;
   
     let user: User | null = null;
     $: user = $userStore;
@@ -51,6 +54,24 @@
     function handleGoogleLogin() {
         signInWithPopup(auth, new GoogleAuthProvider());
     }
+
+  async function handleForgotPassword() {
+    console.log('reset pw')
+    try {
+      await sendPasswordResetEmail(auth, email);
+      resetEmailSent = true;
+      error = null;
+    } catch (e) {
+      error = e.message;
+    }
+  }
+
+  function toggleResetPassword() {
+    isResetPassword = !isResetPassword;
+    resetEmailSent = false;
+    error = null;
+  }
+    
   </script>
   
   <div class="auth-form-container">
@@ -58,31 +79,60 @@
       <p>Welcome, {user.email}</p>
       <button on:click={handleLogout}>Logout</button>
     {:else}
-      <form class="auth-form" on:submit|preventDefault={isRegister ? handleSignup : handleLogin}>
-        <div class="auth-form-buttons">
+    {#if isResetPassword}
+      <form class="auth-form" on:submit|preventDefault={handleForgotPassword}>
+        <div>
           <label>
             Email:
             <input type="email" bind:value={email} required />
           </label>
-          <label>
-            Password:
-          <input type="password" bind:value={password} required />
-          </label>
-          {#if isRegister}
-            <label>
-              Confirm Password:
-              <input type="password" bind:value={confirmPassword} required />
-            </label>
-          {/if}
         </div>
-        <button type="submit">{isRegister ? 'Register' : 'Login'}</button>
-        <button type="button" on:click={() => isRegister = !isRegister}>
-          {isRegister ? 'Already have an account? Login' : 'Don\'t have an account? Register'}
-        </button>
-        <button on:click={handleGoogleLogin}>Login With Google Account</button>
+        {#if resetEmailSent}
+          <p style="color: green;">Password reset email sent. Check your inbox.</p>
+        {/if}
         {#if error}
           <p style="color: red;">{error}</p>
         {/if}
+        <button type="submit">Send Password Reset Email</button>
+        <button type="button" on:click={toggleResetPassword}>Back to Login</button>
       </form>
+    {:else}
+    <form class="auth-form" on:submit|preventDefault={isRegister ? handleSignup : handleLogin}>
+      <div class="auth-form-buttons">
+        <label>
+          Email:
+          <input type="email" bind:value={email} required />
+        </label>
+        {#if !isResetPassword}
+          <label>
+            Password:
+            <input type="password" bind:value={password} required />
+          </label>
+        {/if}
+        {#if isRegister}
+          <label>
+            Confirm Password:
+            <input type="password" bind:value={confirmPassword} required />
+          </label>
+        {/if}
+      </div>
+      <button type="submit">{isRegister ? 'Register' : 'Login'}</button>
+      <button on:click={handleGoogleLogin}>Login With Google Account</button>
+      <button type="button" on:click={() => isRegister = !isRegister}>
+        {isRegister ? 'Already have an account? Login' : 'Don\'t have an account? Register'}
+      </button>
+      {#if !isRegister}
+      <button on:click={toggleResetPassword}>
+        Forgot Password?
+      </button>
+        {#if resetEmailSent}
+          <p style="color: green;">Password reset email sent. Check your inbox.</p>
+        {/if}
+      {/if}
+      {#if error}
+        <p style="color: red;">{error}</p>
+      {/if}
+    </form>
     {/if}
+  {/if}
   </div>
