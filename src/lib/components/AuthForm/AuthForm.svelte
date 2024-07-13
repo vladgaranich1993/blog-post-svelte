@@ -66,7 +66,7 @@
           </label>
           <label>
             Password:
-            <input type="password" bind:value={password} required />
+          <input type="password" bind:value={password} required />
           </label>
           {#if isRegister}
             <label>
@@ -79,6 +79,7 @@
         <button type="button" on:click={() => isRegister = !isRegister}>
           {isRegister ? 'Already have an account? Login' : 'Don\'t have an account? Register'}
         </button>
+        <button on:click={handleGoogleLogin}>Login With Google Account</button>
         {#if error}
           <p style="color: red;">{error}</p>
         {/if}
