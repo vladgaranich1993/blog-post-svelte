@@ -14,14 +14,12 @@
     signOut(auth);
     dispatch('logout');
   }
-
-  
 </script>
 
 <header class="header">
   {#if user}
-  <h4>
-    Hello, {user.displayName}
+    <h4>
+      Hello, {user.displayName}
     </h4>
     <button on:click={handleLogout}>Logout</button>
   {/if}
