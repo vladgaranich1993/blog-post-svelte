@@ -12,6 +12,7 @@ export async function fetchPosts() {
     querySnapshot.forEach((doc) => {
       fetchedPosts.push({ id: doc.id, ...doc.data() });
     });
+    fetchedPosts.sort((a, b) => b.timestamp - a.timestamp);
     posts.set(fetchedPosts);
     error = null;
   } catch (e) {
