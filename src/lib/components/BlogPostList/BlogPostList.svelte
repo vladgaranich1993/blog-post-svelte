@@ -1,31 +1,13 @@
 <script lang="ts">
     import { onMount } from 'svelte';
-    import { collection, getDocs, deleteDoc, doc } from 'firebase/firestore';
+    import { deleteDoc, doc } from 'firebase/firestore';
     import { db } from '$lib/firebase';
-    import { writable } from 'svelte/store';
     import userStore from '$lib/userStore';
+    import { posts, fetchPosts, error } from '$lib/posts';
     import type { User } from 'firebase/auth';
   
     let user: User | null = null;
     $: user = $userStore;
-  
-    let posts = writable([]);
-    let error: string | null = null;
-  
-    async function fetchPosts() {
-      try {
-        const querySnapshot = await getDocs(collection(db, 'posts'));
-        let fetchedPosts = [];
-        querySnapshot.forEach((doc) => {
-          fetchedPosts.push({ id: doc.id, ...doc.data() });
-        });
-        posts.set(fetchedPosts);
-        error = null;
-      } catch (e) {
-        error = e.message;
-      }
-    }
-  
     async function handleDeletePost(postId: string) {
       try {
         await deleteDoc(doc(db, 'posts', postId));

@@ -3,6 +3,7 @@
     import { db } from '$lib/firebase';
     import userStore from '$lib/userStore';
     import type { User } from 'firebase/auth';
+    import { fetchPosts } from '$lib/posts';
 
     let title: string = '';
     let content: string = '';
@@ -24,6 +25,7 @@
         title = '';
         content = '';
         error = null;
+        fetchPosts();
       } catch (e) {
         error = e.message;
       }
