@@ -19,7 +19,7 @@
   });
 </script>
   
-  <Header {user} />
+  <Header />
   {#if !user}
     <AuthForm />
   {/if}

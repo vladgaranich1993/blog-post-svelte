@@ -12,8 +12,8 @@
       try {
         await deleteDoc(doc(db, 'posts', postId));
         fetchPosts();
-      } catch (e) {
-        error = e.message;
+      } catch {
+        error
       }
     }
   
