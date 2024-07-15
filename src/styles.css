@@ -1,4 +1,9 @@
-.auth-form-container {
+body {
+  margin: 0 auto;
+  width: 80%;
+}
+
+.form-container {
   max-width: 400px;
   margin: 0 auto;
   padding: 1rem;
@@ -8,10 +13,10 @@
     color: red;
   }
 }
-.auth-form {
+.form {
   display: flex;
   flex-direction: column;
-    .auth-form-buttons {
+    .form-buttons {
       display: flex;
       flex-direction: column;
     }
@@ -23,7 +28,7 @@
       border-radius: 3px;
     }
 }
-
+  
 button {
   margin-top: 1rem;
   padding: 0.5rem;
@@ -36,3 +41,4 @@ button {
       background-color: #0056b3;
     }
 }
+  

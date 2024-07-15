@@ -4,7 +4,6 @@
     import userStore from '$lib/userStore';
     import type { User } from 'firebase/auth';
     import { sendPasswordResetEmail } from 'firebase/auth';
-    import './AuthForm.css'
 
     let email: string = '';
     let password: string = '';
@@ -74,13 +73,13 @@
     
   </script>
   
-  <div class="auth-form-container">
+  <div class="form-container">
     {#if user}
       <p>Welcome, {user.email}</p>
       <button on:click={handleLogout}>Logout</button>
     {:else}
     {#if isResetPassword}
-      <form class="auth-form" on:submit|preventDefault={handleForgotPassword}>
+      <form class="form" on:submit|preventDefault={handleForgotPassword}>
         <div>
           <label>
             Email:
@@ -97,8 +96,8 @@
         <button type="button" on:click={toggleResetPassword}>Back to Login</button>
       </form>
     {:else}
-    <form class="auth-form" on:submit|preventDefault={isRegister ? handleSignup : handleLogin}>
-      <div class="auth-form-buttons">
+    <form class="form" on:submit|preventDefault={isRegister ? handleSignup : handleLogin}>
+      <div class="form-buttons">
         <label>
           Email:
           <input type="email" bind:value={email} required />
