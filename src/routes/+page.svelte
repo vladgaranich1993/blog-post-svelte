@@ -18,16 +18,18 @@
     });
   });
 </script>
-  
+{#if user}
   <Header />
-  {#if !user}
-    <AuthForm />
-  {/if}
-  {#if user}
-    <BlogPostForm />
-    <BlogPostList />
-  {/if}
-  <main>
-    <slot />
-  </main>
-  
+{/if}
+{#if !user}
+<div class="flex items-center h-screen w-full">
+  <AuthForm />
+</div>
+{/if}
+{#if user}
+  <BlogPostForm />
+  <BlogPostList />
+{/if}
+<main>
+  <slot />
+</main>

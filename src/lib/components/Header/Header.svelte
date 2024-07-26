@@ -3,7 +3,6 @@
   import { createEventDispatcher } from 'svelte';
   import userStore from '$lib/userStore';
   import type { User } from 'firebase/auth';
-  import './Header.css'
 
   let user: User | null = null;
   $: user = $userStore;
@@ -16,11 +15,15 @@
   }
 </script>
 
-<header class="header">
+<header class="flex items-center justify-between w-full bg-white shadow-lg px-5 py-5">
   {#if user}
-    <h4>
+    <h4 class="font-bold">
       Hello, {user.displayName}
     </h4>
-    <button on:click={handleLogout}>Logout</button>
+    <button
+      class="bg-blue-500 hover:bg-blue-700 text-white uppercase text-sm font-semibold px-4 py-2 rounded"
+      on:click={handleLogout}>
+        Logout
+      </button>
   {/if}
 </header>
