@@ -22,7 +22,7 @@
     });
   </script>
   
-  <div class="posts-list">
+  <div>
     {#if error}
       <p style="color: red;">{error}</p>
     {/if}
@@ -30,7 +30,7 @@
       <p>No posts available.</p>
     {:else}
       {#each $posts as post}
-        <div class="post-container">
+        <div class="w-full bg-white rounded shadow-lg p-8 m-4 md:max-w-md md:mx-auto">
           <h2>{post.title}</h2>
           <p>{post.content}</p>
           <p>

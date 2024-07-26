@@ -73,21 +73,21 @@
     
   </script>
   
-  <div class="form-container">
+  <div class="w-full bg-white rounded shadow-lg p-8 m-4 md:max-w-sm md:mx-auto">
     {#if user}
       <p>Welcome, {user.email}</p>
       <button on:click={handleLogout}>Logout</button>
     {:else}
     {#if isResetPassword}
-      <form class="form" on:submit|preventDefault={handleForgotPassword}>
+      <form on:submit|preventDefault={handleForgotPassword}>
         <div>
           <label>
             Email:
-            <input type="email" bind:value={email} required />
+            <input class="w-full border rounded p-2 outline-none focus:shadow-outline" type="email" bind:value={email} required />
           </label>
         </div>
         {#if resetEmailSent}
-          <p style="color: green;">Password reset email sent. Check your inbox.</p>
+          <p class="text-green-700">Password reset email sent. Check your inbox.</p>
         {/if}
         {#if error}
           <p style="color: red;">{error}</p>
@@ -96,40 +96,42 @@
         <button type="button" on:click={toggleResetPassword}>Back to Login</button>
       </form>
     {:else}
-    <form class="form" on:submit|preventDefault={isRegister ? handleSignup : handleLogin}>
-      <div class="form-buttons">
+    <form on:submit|preventDefault={isRegister ? handleSignup : handleLogin}>
+      <div>
         <label>
           Email:
-          <input type="email" bind:value={email} required />
+          <input class="mt-2 w-full border rounded p-2 outline-none focus:shadow-outline" type="email" bind:value={email} required />
         </label>
         {#if !isResetPassword}
           <label>
             Password:
-            <input type="password" bind:value={password} required />
+            <input class="mt-2 w-full border rounded p-2 outline-none focus:shadow-outline" type="password" bind:value={password} required />
           </label>
         {/if}
         {#if isRegister}
           <label>
             Confirm Password:
-            <input type="password" bind:value={confirmPassword} required />
+            <input class="mt-2 w-full border rounded p-2 outline-none focus:shadow-outline" type="password" bind:value={confirmPassword} required />
           </label>
         {/if}
       </div>
-      <button type="submit">{isRegister ? 'Register' : 'Login'}</button>
-      <button on:click={handleGoogleLogin}>Login With Google Account</button>
-      <button type="button" on:click={() => isRegister = !isRegister}>
-        {isRegister ? 'Already have an account? Login' : 'Don\'t have an account? Register'}
-      </button>
-      {#if !isRegister}
-      <button on:click={toggleResetPassword}>
-        Forgot Password?
-      </button>
-        {#if resetEmailSent}
-          <p style="color: green;">Password reset email sent. Check your inbox.</p>
-        {/if}
-      {/if}
+      <div class="flex flex-col">
+        <button class="mt-2 bg-green-500 hover:bg-green-700 text-white uppercase text-sm font-semibold px-4 py-2 rounded" type="submit">{isRegister ? 'Register' : 'Login'}</button>
+        <button class="mt-2 bg-blue-500 hover:bg-blue-700 text-white uppercase text-sm font-semibold px-4 py-2 rounded" on:click={handleGoogleLogin}>Login With Google Account</button>
+        <button class="mt-2 bg-purple-500 hover:bg-purple-700 text-white uppercase text-sm font-semibold px-4 py-2 rounded" type="button" on:click={() => isRegister = !isRegister}>
+          {isRegister ? 'Already have an account? Login' : 'Don\'t have an account? Register'}
+        </button>
+        {#if !isRegister}
+        <button class="mt-5 underline text-blue-700 text-center text-sm" on:click={toggleResetPassword}>
+          Forgot Password?
+        </button>
+          {#if resetEmailSent}
+            <p class="text-green-700">Password reset email sent. Check your inbox.</p>
+          {/if}
+          {/if}
+      </div>
       {#if error}
-        <p style="color: red;">{error}</p>
+        <p class="text-red-700">{error}</p>
       {/if}
     </form>
     {/if}
