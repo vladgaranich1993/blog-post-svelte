@@ -90,7 +90,7 @@
           <p class="text-green-700">Password reset email sent. Check your inbox.</p>
         {/if}
         {#if error}
-          <p style="color: red;">{error}</p>
+          <p class="text-red-500">{error}</p>
         {/if}
         <button type="submit">Send Password Reset Email</button>
         <button type="button" on:click={toggleResetPassword}>Back to Login</button>

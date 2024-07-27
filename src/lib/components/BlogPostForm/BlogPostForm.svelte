@@ -28,6 +28,10 @@
         fetchPosts();
       } catch (e) {
         error = e.message;
+      } finally {
+        setTimeout(() => {
+          success = false;
+        }, 1500);
       }
     }
   </script>
@@ -54,10 +58,10 @@
         Add Post
       </button>
       {#if error}
-        <p style="color: red;">{error}</p>
+        <p class="text-red-500">{error}</p>
       {/if}
       {#if success}
-        <p style="color: green;">Post added successfully!</p>
+        <p class="text-green-500">Post added successfully!</p>
       {/if}
     </form>
   </div>
