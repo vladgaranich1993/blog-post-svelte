@@ -7,6 +7,7 @@ import {
   signOut,
   GoogleAuthProvider,
   signInWithPopup,
+  sendPasswordResetEmail
 } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 const firebaseConfig = {
@@ -32,4 +33,5 @@ export {
   signOut,
   GoogleAuthProvider,
   signInWithPopup,
+  sendPasswordResetEmail
 };
