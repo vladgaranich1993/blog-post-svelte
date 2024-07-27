@@ -1,12 +1,9 @@
 <script lang="ts">
   import { auth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from '$lib/firebase';
-  import { createEventDispatcher } from 'svelte';
   let email: string = '';
   let password: string = '';
   let confirmPassword: string = '';
   let error: string | null = null;
-
-  const dispatch = createEventDispatcher();
 
   async function handleSignup() {
     try {
@@ -14,7 +11,6 @@
         throw new Error('Passwords do not match');
       }
       await createUserWithEmailAndPassword(auth, email, password);
-      dispatch('signup');
       error = null;
     } catch (e: any) {
       error = e.message;

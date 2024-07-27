@@ -1,7 +1,7 @@
 <script lang="ts">
-  import LoginForm from '../LoginForm/LoginForm.svelte';
-  import RegisterForm from '../RegisterForm/RegisterForm.svelte';
-  import ResetPasswordForm from '../ResetPasswordForm/ResetPasswordForm.svelte';
+  import LoginForm from './LoginForm.svelte';
+  import RegisterForm from './RegisterForm.svelte';
+  import ResetPasswordForm from './ResetPasswordForm.svelte';
   import userStore from '$lib/userStore';
   import type { User } from 'firebase/auth';
 
