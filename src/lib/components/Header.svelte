@@ -18,7 +18,7 @@
 <header class="flex items-center justify-between w-full bg-white shadow-lg px-5 py-5">
   {#if user}
     <h4 class="font-bold">
-      Hello, {user.displayName}
+      Hello, {user.email}
     </h4>
     <button
       class="bg-blue-500 hover:bg-blue-700 text-white uppercase text-sm font-semibold px-4 py-2 rounded"

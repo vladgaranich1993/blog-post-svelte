@@ -1,16 +1,12 @@
 <script lang="ts">
   import { auth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from '$lib/firebase';
-  import { createEventDispatcher } from 'svelte';
   let email: string = '';
   let password: string = '';
   let error: string | null = null;
 
-  const dispatch = createEventDispatcher();
-
   async function handleLogin() {
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      dispatch('login');
       error = null;
     } catch (e: any) {
       error = e.message;

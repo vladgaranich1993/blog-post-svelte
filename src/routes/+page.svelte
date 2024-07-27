@@ -3,10 +3,10 @@
   import userStore from '$lib/userStore';
   import { auth, onAuthStateChanged } from '$lib/firebase';
   import type { User } from 'firebase/auth';
-  import Header from '$lib/components/Header/Header.svelte';
-  import AuthForm from '$lib/components/AuthForm/AuthForm.svelte';
-  import BlogPostForm from '$lib/components/BlogPostForm/BlogPostForm.svelte';
-  import BlogPostList from '$lib/components/BlogPostList/BlogPostList.svelte';
+  import Header from '$lib/components/Header.svelte';
+  import AuthForm from '$lib/components/AuthForm.svelte';
+  import BlogPostForm from '$lib/components/BlogPostForm.svelte';
+  import BlogPostList from '$lib/components/BlogPostList.svelte';
   import '../styles.css'
 
   let user: User | null = null;

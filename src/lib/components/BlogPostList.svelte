@@ -3,7 +3,7 @@
   import { deleteDoc, doc } from 'firebase/firestore';
   import { db } from '$lib/firebase';
   import { posts, fetchPosts, error } from '$lib/posts';
-  import BlogPost from '../BlogPost/BlogPost.svelte';
+  import BlogPost from './BlogPost.svelte';
 
   async function handleDeletePost(postId) {
     try {
