@@ -20,7 +20,7 @@
 
 <div class="w-full bg-white rounded shadow-lg p-8 m-4 md:max-w-md md:mx-auto">
   <h2>{title}</h2>
-  <p>{content}</p>
+  <p class="whitespace-break-spaces">{content}</p>
   <p>
     <small>By {postUser} on {new Date(postTime.toDate()).toLocaleString()}</small>
   </p>
